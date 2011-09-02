@@ -15,10 +15,10 @@ ICONS = dict({START: "play.png", STOP: "stop.png", LOADING: "loading.png"})
 play_command = 'mplayer mms://stream.polskieradio.pl/program3 -cache 150'
 
 print os.getcwd()
-os.chdir('/add/projekty/radio-gtk')
+os.chdir('./')
 
 class Radio:
-    process = ""
+    process = None
 
     def __init__(self):
         self.status = STOP
@@ -27,7 +27,7 @@ class Radio:
         self.load_icon(ICONS[STOP])
 
         self.statusIcon.connect("activate", self.activated)
-        self.statusIcon.connect("popup-menu", gtk.main_quit)
+        self.statusIcon.connect("popup-menu", self.quit)
         self.statusIcon.set_visible(True)
 
         self.play_args = shlex.split(play_command)
@@ -50,8 +50,17 @@ class Radio:
             #print self.process.expect('AUDIO\:.*')
             self.load_icon(ICONS[START])
         else:
-            self.process.terminate()
+            self.process_stop
             self.load_icon(ICONS[STOP])
+
+    def process_stop(self):
+            self.process.terminate()
+
+
+    def quit(self):
+        if self.process:
+            self.process_stop()
+        gtk.quit() 
 
 
 
