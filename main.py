@@ -49,17 +49,17 @@ class Radio:
             #print self.process.expect('AUDIO\:.*')
             self.load_icon(ICONS[START])
         else:
-            self.process_stop
+            self.process_stop()
             self.load_icon(ICONS[STOP])
 
     def process_stop(self):
+        if self.process is not None:
             self.process.terminate()
 
 
-    def quit(self):
-        if self.process:
-            self.process_stop()
-        gtk.quit() 
+    def quit(self, arg1, arg2, arg3):
+        self.process_stop()
+        gtk.main_quit() 
 
 
 
