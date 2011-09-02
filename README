@@ -1,0 +1,14 @@
+Python simple script 
+to run mplayer stream 
+hardcoded into main.py 
+from tray icon
+
+Uses pygtk >= 2.0
+
+Installation:
+
+sudo ./install.py
+!important -> need to run from project dir
+
+This creates /usr/local/bin/radio-gtk symlink
+and change project dir in main.py
