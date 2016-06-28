@@ -14,7 +14,7 @@ ICONS = dict({START: "play.png", STOP: "stop.png", LOADING: "loading.png"})
 
 play_command = 'mplayer mms://stream.polskieradio.pl/program3 -cache 150'
 
-os.chdir('/add/projekty/radio-gtk')
+os.chdir('/add/projekty/linux/radio-gtk')
 
 class Radio:
     process = None
