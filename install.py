@@ -15,11 +15,3 @@ except:
     pass
 os.symlink("%s/main.py" % cwd, '/usr/local/bin/radio-gtk')
 print "..done"
-
-print "Changind working dir in main.py",
-for line in fileinput.input("main.py", inplace=1):
-    if line.find('os.chdir') == 0:
-        print  "os.chdir('%s')" % (cwd)
-    else:
-        print line,
-print "..done"
