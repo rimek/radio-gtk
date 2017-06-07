@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python
 
 import logging
 import os
@@ -8,21 +8,29 @@ import subprocess
 from gi.repository import GObject, Gtk
 
 cwd = os.path.dirname(os.path.abspath(__file__))
+os.chdir(cwd)
 logger = logging.getLogger()
 
 STATUS_STOP = 0
 STATUS_PLAY = 1
+
+iconpath = os.path.join(cwd, 'icons')
 ICONS = [
-    "icons/stop.png",
-    "icons/play.png",
+    os.path.join(iconpath, 'stop.png'),
+    os.path.join(iconpath, 'play.png'),
 ]
 
 streams = {
     # TODO find a high quality stream
-    'PR3 works, lq': 'http://stream3.polskieradio.pl:8904',  # poor quality but works
-    'PR3 (old1)': 'http://www.polskieradio.pl/st/program3M.asx',
-    'PR3 (old2)': 'mms://stream.polskieradio.pl/program3_wma10',
-    'PR3 (old3)': 'http://ic.dktr.pl:8000/trojka3.ogg'
+
+    # poor quality but works
+    'Trójka': 'http://stream3.polskieradio.pl:8904',
+    'Czwórka': 'http://stream3.polskieradio.pl:8906/listen.pls',
+
+    'Antyradio K-ce': 'http://ant-kat-01.cdn.eurozet.pl:8604/listen.pls',
+    # 'PR3 (old1)': 'http://www.polskieradio.pl/st/program3M.asx',
+    # 'PR3 (old2)': 'mms://stream.polskieradio.pl/program3_wma10',
+    # 'PR3 (old3)': 'http://ic.dktr.pl:8000/trojka3.ogg'
 }
 
 
@@ -34,7 +42,7 @@ class Radio:
         self.status = STATUS_STOP
         self.stream = list(streams.values())[0]
 
-        self.init_tray_icon()
+        self.init_trayicon()
 
         self.mainloop = GObject.MainLoop()
         try:
@@ -47,8 +55,8 @@ class Radio:
         self.status_icon = Gtk.StatusIcon()
         self.status_icon.set_from_file(ICONS[self.status])
 
-        self.status_icon.connect("activate", self.activated)
-        self.status_icon.connect("popup-menu", self.make_menu)
+        self.status_icon.connect('activate', self.activated)
+        self.status_icon.connect('popup-menu', self.make_menu)
         self.status_icon.set_visible(True)
 
     def player_cmd(self):
@@ -68,7 +76,10 @@ class Radio:
         self.status_icon.set_from_file(ICONS[STATUS_PLAY])
 
     def stop(self):
-        self.process_stop()
+        try:
+            self.process.terminate()
+        except Exception as e:
+            logger.warn(e)
         self.status_icon.set_from_file(ICONS[STATUS_STOP])
 
     def restart(self):
@@ -84,23 +95,23 @@ class Radio:
         for k, v in streams.items():
             stream_item = Gtk.MenuItem(k)
             menu.append(stream_item)
-            stream_item.connect_object("activate", self.change_stream, k)
+            stream_item.connect_object('activate', self.change_stream, k)
             stream_item.show()
 
-        quit_item = Gtk.MenuItem("quit")
+        separator = Gtk.SeparatorMenuItem()
+        menu.append(separator)
+        separator.show()
+
+        quit_item = Gtk.MenuItem('Quit')
         menu.append(quit_item)
-        quit_item.connect_object("activate", self.quit, "quit app")
+        quit_item.connect_object('activate', self.quit, '')
         quit_item.show()
 
         menu.popup(None, None, None, None, event_btn, event_time)
 
     def quit(self, *args):
-        try:
-            self.process.terminate()
-        except Exception as e:
-            logger.warn(e)
-
+        self.stop()
         self.mainloop.quit()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     radio = Radio()
