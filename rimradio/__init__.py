@@ -1,1 +1,1 @@
-from .rimradio import Radio
+from .rimradio import Radio  # NOQA

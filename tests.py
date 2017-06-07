@@ -20,5 +20,6 @@ class StreamAvailabilityTest(unittest.TestCase):
                 # TODO find a better way to check the stream
                 self.assertTrue(isinstance(e.args[0].args[1], http.client.BadStatusLine))
 
+
 if __name__ == '__main__':
     unittest.main()

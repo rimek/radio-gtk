@@ -117,5 +117,6 @@ class Radio:
         self.stop()
         self.mainloop.quit()
 
+
 if __name__ == '__main__':
     radio = Radio()
