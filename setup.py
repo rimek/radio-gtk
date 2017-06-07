@@ -1,21 +1,16 @@
 #!/usr/bin/env python
-import os
-
 from setuptools import find_packages, setup
-
-root = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     name='rimradio',
-    version='0.1.0',
+    version='0.1.1',
     description='Simple GTK stream radio player',
     author='Marcin Rim',
     author_email='rimek@poczta.fm',
     url='https://github.com/rimek/radio-gtk',
     packages=find_packages(),
-    include_package_data=True,
     package_data={
-        'rimradio': ('icons/play.png', 'icons/stop.png'),
+        '': ['*.png', 'README.md'],
     },
     zip_safe=False,
     install_requires=[
