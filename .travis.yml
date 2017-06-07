@@ -10,5 +10,5 @@ addons:
     packages:
     - python3-gi
 script:
-- python tests.py
+- python3 tests.py
 - flake8 . --max-line-length=120
