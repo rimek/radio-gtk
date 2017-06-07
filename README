@@ -1,14 +1,13 @@
-Python simple script 
-to run mplayer stream 
-hardcoded into main.py 
-from tray icon
+```
+python setup.py install
+```
 
-Uses pygtk >= 2.0
+or
 
-Installation:
+```
+pip install rimradio
+```
 
-sudo ./install.py
-!important -> need to run from project dir
 
-This creates /usr/local/bin/radio-gtk symlink
-and change project dir in main.py
+Run it using:
+`rimradio`
