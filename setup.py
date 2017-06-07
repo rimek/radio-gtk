@@ -21,8 +21,10 @@ setup(
     install_requires=[
         'vext',
         'vext.gi',
+        'requests',
     ],
     scripts=['bin/rimradio'],
+    test_suite='tests',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

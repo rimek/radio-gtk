@@ -5,7 +5,11 @@ import os
 import shlex
 import subprocess
 
-from gi.repository import GObject, Gtk
+import gi
+
+gi.require_version('Gtk', '3.0')  # NOQA isort:skip
+from gi.repository import GObject, Gtk # NOQA isort:skip
+
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 os.chdir(cwd)
