@@ -25,6 +25,7 @@ ICONS = [
 ]
 
 streams = {
+    # http://radio.nadaje.com/pl/stations/radio-stations/station/1798/
     'Trójka': 'http://3.dktr.pl:8000/trojka3.ogg',
     # poor quality but works
     'Trójka (96 kbps)': 'http://stream3.polskieradio.pl:8904',
