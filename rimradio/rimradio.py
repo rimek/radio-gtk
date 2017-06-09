@@ -25,10 +25,9 @@ ICONS = [
 ]
 
 streams = {
-    # TODO find a high quality stream
-
+    'Trójka': 'http://3.dktr.pl:8000/trojka3.ogg',
     # poor quality but works
-    'Trójka': 'http://stream3.polskieradio.pl:8904',
+    'Trójka (96 kbps)': 'http://stream3.polskieradio.pl:8904',
     'Czwórka': 'http://stream3.polskieradio.pl:8906/listen.pls',
 
     'Antyradio K-ce': 'http://ant-kat-01.cdn.eurozet.pl:8604/listen.pls',

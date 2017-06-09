@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='rimradio',
-    version='0.1.1',
+    version='0.1.2',
     description='Simple GTK stream radio player',
     author='Marcin Rim',
     author_email='rimek@poczta.fm',
